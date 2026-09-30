@@ -37,12 +37,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    if (!auth) {
+    const firebaseAuth = auth;
+    if (!firebaseAuth) {
       setAuthLoading(false);
       return;
     }
 
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+    const unsubscribe = onAuthStateChanged(firebaseAuth, async (user) => {
       setFirebaseUser(user);
       if (user) {
         let adminProfile: UserProfile | null = null;
@@ -75,7 +76,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const loginAsAdmin = async (email: string, password: string) => {
     const result = await authService.loginAsAdmin(email, password);
-    const user = auth.currentUser;
+    const user = auth?.currentUser;
 
     // The dashboard can mount before onAuthStateChanged finishes after sign-in.
     // Update the context immediately so its admin guard does not redirect back
