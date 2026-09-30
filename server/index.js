@@ -16,6 +16,9 @@ const api = createKinkooApi({
   projectId: process.env.FIREBASE_PROJECT_ID || process.env.VITE_FIREBASE_PROJECT_ID,
   databasePath: process.env.KINKOO_SQLITE_PATH || resolve(root, 'data', 'kinkoo.sqlite')
 });
+const allowedApiOrigins = new Set(
+  (process.env.KINKOO_ALLOWED_ORIGINS || '').split(',').map((origin) => origin.trim()).filter(Boolean)
+);
 
 const contentTypes = {
   '.css': 'text/css; charset=utf-8',
@@ -59,6 +62,26 @@ async function serveStatic(request, response) {
 
 const server = createServer(async (request, response) => {
   try {
+    const origin = request.headers.origin;
+    const isKinkooApiRequest = request.url?.startsWith('/api/kinkoo');
+    const isAllowedApiOrigin = typeof origin === 'string' && allowedApiOrigins.has(origin);
+
+    if (isKinkooApiRequest && isAllowedApiOrigin) {
+      response.setHeader('Access-Control-Allow-Origin', origin);
+      response.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+      response.setHeader('Access-Control-Allow-Headers', 'Authorization, Content-Type');
+      response.setHeader('Vary', 'Origin');
+    }
+
+    if (isKinkooApiRequest && request.method === 'OPTIONS') {
+      if (!isAllowedApiOrigin) {
+        response.writeHead(403).end();
+        return;
+      }
+      response.writeHead(204).end();
+      return;
+    }
+
     if (await api(request, response)) return;
     await serveStatic(request, response);
   } catch (error) {

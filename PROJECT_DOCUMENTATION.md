@@ -36,9 +36,9 @@ flowchart LR
   Browser -->|Profile, community request, visit reads| Firestore
 ```
 
-The client and API are same-origin. During `npm run dev`, Vite mounts the SQLite API middleware. In production, `server/index.js` serves both the compiled website and API. The SQLite database defaults to `data/kinkoo.sqlite`; set `KINKOO_SQLITE_PATH` to choose another path.
+The client defaults to a same-origin API. During `npm run dev`, Vite mounts the SQLite API middleware. In production, `server/index.js` serves both the compiled website and API. The SQLite database defaults to `data/kinkoo.sqlite`; set `KINKOO_SQLITE_PATH` to choose another path.
 
-**Hosting requirement:** production must run the Node server on a host with Node.js 22.18 or later and persistent disk storage. A static-only host cannot run the SQLite API or preserve the database file across restarts.
+**Hosting requirement:** production must run the Node server on a host with Node.js 22.18 or later and persistent disk storage. A static-only host such as Netlify cannot run the SQLite API or preserve the database file across restarts. If the website remains on Netlify, deploy this Node API as a separate persistent service, set the Netlify build variable `VITE_KINKOO_API_BASE_URL` to that service's origin, and set the API service variable `KINKOO_ALLOWED_ORIGINS` to the website origin (comma-separated if multiple origins are used). The API service also needs `FIREBASE_PROJECT_ID` and a persistent `KINKOO_SQLITE_PATH`.
 
 ## Important files
 

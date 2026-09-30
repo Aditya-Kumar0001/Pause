@@ -14,7 +14,8 @@ export async function kinkooApi<T>(path: string, body?: unknown): Promise<T> {
   const user = auth?.currentUser;
   if (!user) throw new LocalKinkooApiError('Sign in to continue.', 401);
   const idToken = await user.getIdToken();
-  const response = await fetch(`/api/kinkoo${path}`, {
+  const apiOrigin = (import.meta.env.VITE_KINKOO_API_BASE_URL || '').replace(/\/+$/, '');
+  const response = await fetch(`${apiOrigin}/api/kinkoo${path}`, {
     method: body === undefined ? 'GET' : 'POST',
     headers: {
       Authorization: `Bearer ${idToken}`,
