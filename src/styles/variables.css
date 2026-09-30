@@ -1,0 +1,88 @@
+:root {
+  /* =========================================================================
+     Pause Official Brand Palette
+     ========================================================================= */
+  --color-espresso: #38220E;
+  --color-espresso-dark: #23150A;
+  --color-espresso-deep: #1A0F06;
+  --color-espresso-light: #4A2E14;
+  
+  --color-brown-secondary: #6A4528;
+  --color-brown-muted: #8C6A4E;
+  --color-brown-subtle: #A88B70;
+  
+  --color-parchment: #E2D5C4;
+  --color-parchment-light: #EBE1D3;
+  --color-parchment-subtle: #F0E8DC;
+  
+  --color-cream: #F4EDE3;
+  --color-surface-paper: #FAF6F0;
+  --color-surface-card: #FAF6F0;
+  --color-surface-pure: #FCF9F5;
+  
+  /* Ink & Border Lines (Editorial / Stationery) */
+  --color-ink-rule: rgba(56, 34, 14, 0.16);
+  --color-ink-rule-subtle: rgba(56, 34, 14, 0.08);
+  --color-ink-rule-dark: rgba(56, 34, 14, 0.32);
+  --color-brown-border: #D1BEA8;
+  --color-brown-border-light: #E6D8C8;
+
+  /* Accents */
+  --color-warm-amber: #C97A3E;
+  --color-vintage-gold: #B8860B;
+  --color-terracotta: #A85D3B;
+  --color-sage: #5A715C;
+  --color-crimson-spam: #9E2A2B;
+
+  /* Text Contrast Hierarchy */
+  --text-headline: #23150A;
+  --text-primary: #38220E;
+  --text-secondary: #6A4528;
+  --text-muted: #8C6A4E;
+  --text-inverse: #F4EDE3;
+  --text-inverse-muted: #E2D5C4;
+
+  /* Typography */
+  --font-serif: 'Fraunces', 'Playfair Display', Georgia, serif;
+  --font-display: 'Playfair Display', 'Fraunces', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Space Grotesk', monospace;
+
+  /* Spacing Scale */
+  --space-3xs: 0.15rem;
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4.5rem;
+  --space-4xl: 6.5rem;
+
+  /* Restrained Radii (Straight editorial lines inspired by printed menu) */
+  --radius-none: 0px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-full: 9999px;
+
+  /* Subtle Warm Physical Shadows (Paper sheets on table) */
+  --shadow-none: none;
+  --shadow-paper-sm: 0 1px 3px rgba(35, 21, 10, 0.04);
+  --shadow-paper-md: 0 3px 8px rgba(35, 21, 10, 0.06);
+  --shadow-paper-lg: 0 8px 20px rgba(35, 21, 10, 0.08);
+  --shadow-card: 0 2px 6px rgba(35, 21, 10, 0.04);
+  --shadow-modal: 0 12px 36px rgba(26, 15, 6, 0.25);
+
+  /* Clean transitions for interactive feedback (NO animations) */
+  --transition-fast: 150ms ease;
+  --transition-normal: 200ms ease;
+
+  /* Max Widths */
+  --max-width-content: 1240px;
+  --max-width-wide: 1380px;
+  --max-width-narrow: 840px;
+  --max-width-editorial: 720px;
+}

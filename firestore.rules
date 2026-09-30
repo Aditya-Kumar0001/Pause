@@ -1,0 +1,114 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    function isAdmin() {
+      return signedIn()
+        && exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+        && get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.active == true
+        && get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // Public website content is readable by visitors and editable by admins.
+    match /site_content/{documentId} {
+      allow get: if true;
+      allow list: if false;
+      allow create, update: if isAdmin();
+      allow delete: if false;
+    }
+
+    // Customer profiles remain Firebase-backed and retain the existing rules.
+    match /users/{uid} {
+      allow get: if isOwner(uid) || isAdmin();
+      allow list: if isAdmin();
+
+      allow create: if isOwner(uid)
+        && request.resource.data.uid == uid
+        && request.resource.data.role == 'customer'
+        && request.resource.data.active == true
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.updatedAt == request.time
+        && request.resource.data.lastLoginAt == request.time
+        && request.resource.data.keys().hasOnly([
+          'uid', 'displayName', 'email', 'photoURL', 'provider', 'phone',
+          'role', 'active', 'createdAt', 'updatedAt', 'lastLoginAt'
+        ]);
+
+      allow update: if (isOwner(uid)
+          && request.resource.data.uid == resource.data.uid
+          && request.resource.data.role == resource.data.role
+          && request.resource.data.active == resource.data.active
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+            'displayName', 'email', 'photoURL', 'provider', 'phone', 'updatedAt', 'lastLoginAt'
+          ])
+          && request.resource.data.updatedAt == request.time
+          && request.resource.data.lastLoginAt == request.time)
+        || (isAdmin()
+          && request.resource.data.uid == resource.data.uid
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+            'displayName', 'phone', 'active', 'updatedAt'
+          ])
+          && request.resource.data.updatedAt == request.time);
+
+      allow delete: if false;
+    }
+
+    // Admin authorization records are maintained outside the website.
+    match /admins/{uid} {
+      allow get: if isOwner(uid);
+      allow list, create, update, delete: if false;
+    }
+
+    // Verified in-person visits remain in Firebase. SQLite owns temporary codes
+    // and loyalty calculations; the signed-in admin API creates this record.
+    match /visits/{visitId} {
+      allow get, list: if isAdmin() || (signedIn() && resource.data.userId == request.auth.uid);
+      allow create: if isAdmin()
+        && request.resource.data.status == 'verified'
+        && request.resource.data.userId is string
+        && request.resource.data.verifiedByAdminId is string;
+      allow update, delete: if false;
+    }
+
+    // Community sign-up requests remain Firebase-backed.
+    match /community_members/{memberId} {
+      allow read: if isAdmin();
+      allow create: if signedIn()
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.source == 'community_page'
+        && request.resource.data.status == 'new'
+        && request.resource.data.createdAt is timestamp
+        && request.resource.data.updatedAt is timestamp
+        && request.resource.data.keys().hasOnly([
+          'id', 'userId', 'name', 'email', 'phone', 'source', 'status', 'createdAt', 'updatedAt'
+        ]);
+      allow update, delete: if isAdmin();
+    }
+
+    // Read-only migration access for each owner's pre-SQLite loyalty history.
+    // The website and server never create or update records in these collections.
+    match /ledger/{transactionId} {
+      allow get, list: if isAdmin() || (signedIn() && resource.data.userId == request.auth.uid);
+      allow create, update, delete: if false;
+    }
+
+    match /redemptions/{redemptionId} {
+      allow get, list: if isAdmin() || (signedIn() && resource.data.userId == request.auth.uid);
+      allow create, update, delete: if false;
+    }
+
+    match /kinkooAccounts/{uid} {
+      allow get: if isAdmin() || isOwner(uid);
+      allow list, create, update, delete: if false;
+    }
+  }
+}

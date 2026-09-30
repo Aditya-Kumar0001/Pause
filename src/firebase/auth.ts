@@ -1,0 +1,1 @@
+export { firebaseAuth as auth } from './config';

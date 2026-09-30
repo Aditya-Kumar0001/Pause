@@ -1,0 +1,479 @@
+/* =========================================================================
+   Pause Component System — Stationery, Paper & Restrained Craft
+   ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   Layout & Containers
+   ------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--max-width-content);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-xl);
+  padding-right: var(--space-xl);
+}
+
+.container-wide {
+  width: 100%;
+  max-width: var(--max-width-wide);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-xl);
+  padding-right: var(--space-xl);
+}
+
+.container-narrow {
+  width: 100%;
+  max-width: var(--max-width-narrow);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-xl);
+  padding-right: var(--space-xl);
+}
+
+.container-editorial {
+  width: 100%;
+  max-width: var(--max-width-editorial);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-xl);
+  padding-right: var(--space-xl);
+}
+
+/* -------------------------------------------------------------------------
+   Section Wrappers & Dividers
+   ------------------------------------------------------------------------- */
+.section {
+  padding-top: var(--space-3xl);
+  padding-bottom: var(--space-3xl);
+  position: relative;
+}
+
+.section-spacious {
+  padding-top: var(--space-4xl);
+  padding-bottom: var(--space-4xl);
+  position: relative;
+}
+
+.section-divider-line {
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-ink-rule);
+  margin: var(--space-3xl) 0;
+}
+
+.section-header {
+  margin-bottom: var(--space-2xl);
+}
+
+.section-header.text-center {
+  text-align: center;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Editorial Brand Label / Kicker */
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.65rem;
+  background-color: var(--color-parchment);
+  border: 1px solid var(--color-brown-border);
+  border-radius: var(--radius-xs);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-espresso);
+  margin-bottom: var(--space-sm);
+}
+
+/* -------------------------------------------------------------------------
+   Buttons (Restrained, Straight, Premium Typography)
+   ------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: 0.8rem 1.6rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: var(--radius-xs);
+  text-decoration: none;
+  cursor: pointer;
+  line-height: 1.2;
+  transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  background-color: var(--color-espresso);
+  color: var(--color-cream);
+  border: 1px solid var(--color-espresso);
+  box-shadow: 0 2px 6px rgba(35, 21, 10, 0.08);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-espresso-dark);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(35, 21, 10, 0.16);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-espresso);
+  border: 1px solid var(--color-espresso);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-espresso);
+  color: var(--color-cream);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(35, 21, 10, 0.1);
+}
+
+.btn-cream {
+  background-color: var(--color-surface-paper);
+  color: var(--color-espresso);
+  border: 1px solid var(--color-brown-border);
+}
+
+.btn-cream:hover {
+  border-color: var(--color-espresso);
+  background-color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(35, 21, 10, 0.06);
+}
+
+.btn-terracotta {
+  background-color: var(--color-terracotta);
+  color: #fff;
+  border: 1px solid var(--color-terracotta);
+  box-shadow: 0 2px 6px rgba(168, 93, 59, 0.15);
+}
+
+.btn-terracotta:hover {
+  background-color: #8c4728;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(168, 93, 59, 0.25);
+}
+
+.btn-sm {
+  padding: 0.45rem 0.95rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+}
+
+.btn-lg {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+}
+
+.btn-full {
+  width: 100%;
+}
+
+.btn:disabled, .btn-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* -------------------------------------------------------------------------
+   Paper Sheets & Stationery Cards
+   ------------------------------------------------------------------------- */
+.card-paper, .card-parchment {
+  background-color: var(--color-surface-paper);
+  border: 1px solid var(--color-brown-border-light);
+  border-radius: var(--radius-xs);
+  padding: var(--space-xl);
+  position: relative;
+}
+
+.card-paper-bordered {
+  background-color: var(--color-surface-paper);
+  border: 1px solid var(--color-brown-border);
+  border-radius: var(--radius-xs);
+  padding: var(--space-xl);
+}
+
+.paper-sheet {
+  background-color: var(--color-surface-pure);
+  border: 1px solid var(--color-brown-border);
+  box-shadow: var(--shadow-paper-md);
+  padding: var(--space-2xl);
+  border-radius: var(--radius-xs);
+  position: relative;
+}
+
+/* Framed Photograph Block (Tactile, editorial) */
+.framed-photo {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--color-brown-border-light);
+  background-color: var(--color-parchment);
+}
+
+.framed-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* -------------------------------------------------------------------------
+   Badges & Tags
+   ------------------------------------------------------------------------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-xs);
+  font-size: 0.725rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.badge-kinkoo {
+  background-color: rgba(201, 122, 62, 0.12);
+  color: var(--color-espresso);
+  border: 1px solid rgba(201, 122, 62, 0.35);
+}
+
+.badge-success {
+  background-color: rgba(90, 113, 92, 0.12);
+  color: var(--color-sage);
+  border: 1px solid rgba(90, 113, 92, 0.3);
+}
+
+.badge-danger {
+  background-color: rgba(158, 42, 43, 0.1);
+  color: var(--color-crimson-spam);
+  border: 1px solid rgba(158, 42, 43, 0.25);
+}
+
+.badge-dark {
+  background-color: var(--color-espresso);
+  color: var(--color-cream);
+  border: 1px solid var(--color-espresso);
+}
+
+.badge-parchment {
+  background-color: var(--color-parchment);
+  color: var(--color-espresso);
+  border: 1px solid var(--color-brown-border);
+}
+
+/* -------------------------------------------------------------------------
+   Modals & Dialogs (Clean Paper Modal)
+   ------------------------------------------------------------------------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(26, 15, 6, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  z-index: 9999;
+}
+
+.modal-content {
+  background-color: var(--color-surface-paper);
+  border: 1px solid var(--color-espresso);
+  border-radius: var(--radius-xs);
+  max-width: 580px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: var(--space-2xl);
+  box-shadow: var(--shadow-modal);
+  position: relative;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: var(--space-lg);
+  right: var(--space-lg);
+  color: var(--color-brown-muted);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.modal-close-btn:hover {
+  background-color: rgba(56, 34, 14, 0.08);
+  color: var(--color-espresso);
+}
+
+/* -------------------------------------------------------------------------
+   Forms & Inputs
+   ------------------------------------------------------------------------- */
+.form-group {
+  margin-bottom: var(--space-lg);
+}
+
+.form-label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-espresso);
+  margin-bottom: 0.35rem;
+}
+
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 0.75rem 0.95rem;
+  background-color: #fff;
+  border: 1px solid var(--color-brown-border);
+  border-radius: var(--radius-xs);
+  color: var(--color-espresso);
+  font-family: var(--font-sans);
+  font-size: 0.925rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  outline: none;
+  border-color: var(--color-espresso);
+  box-shadow: 0 0 0 3px rgba(56, 34, 14, 0.08);
+}
+
+.form-help {
+  font-size: 0.775rem;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+}
+
+/* -------------------------------------------------------------------------
+   Tabs (Editorial / Underline & Boxed)
+   ------------------------------------------------------------------------- */
+.editorial-tabs {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  border-bottom: 1px solid var(--color-ink-rule);
+  margin-bottom: var(--space-2xl);
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.editorial-tab-btn {
+  padding: 0.65rem 1.25rem;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-brown-muted);
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.editorial-tab-btn:hover {
+  color: var(--color-espresso);
+}
+
+.editorial-tab-btn.active {
+  color: var(--color-espresso);
+  border-bottom-color: var(--color-espresso);
+}
+
+/* -------------------------------------------------------------------------
+   Empty States & Error States
+   ------------------------------------------------------------------------- */
+.empty-state {
+  text-align: center;
+  padding: var(--space-3xl) var(--space-lg);
+  background-color: rgba(255, 255, 255, 0.4);
+  border: 1px dashed var(--color-brown-border);
+  border-radius: var(--radius-xs);
+}
+
+.empty-state-icon {
+  width: 44px;
+  height: 44px;
+  margin: 0 auto var(--space-md) auto;
+  color: var(--color-brown-muted);
+  opacity: 0.7;
+}
+
+.error-banner {
+  padding: var(--space-md) var(--space-lg);
+  background-color: rgba(158, 42, 43, 0.08);
+  border: 1px solid var(--color-crimson-spam);
+  border-radius: var(--radius-xs);
+  color: var(--color-crimson-spam);
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+/* -------------------------------------------------------------------------
+   Progress Bar (Restrained)
+   ------------------------------------------------------------------------- */
+.progress-container {
+  width: 100%;
+  background-color: rgba(56, 34, 14, 0.1);
+  height: 6px;
+  border-radius: var(--radius-xs);
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: var(--color-espresso);
+  border-radius: var(--radius-xs);
+}
+
+/* -------------------------------------------------------------------------
+   Toast Notification
+   ------------------------------------------------------------------------- */
+.toast-container {
+  position: fixed;
+  bottom: var(--space-xl);
+  right: var(--space-xl);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.toast {
+  background-color: var(--color-espresso-dark);
+  color: var(--color-cream);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--color-brown-muted);
+  box-shadow: var(--shadow-paper-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 0.875rem;
+}

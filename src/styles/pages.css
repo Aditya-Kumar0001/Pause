@@ -1,0 +1,1580 @@
+/* =========================================================================
+   Pause Coffee & Eatery — Refined Luxury Editorial Page Stylesheet
+   ========================================================================= */
+
+.auth-page {
+  min-height: 66vh;
+  display: flex;
+  align-items: center;
+}
+
+.auth-content {
+  width: min(100%, 480px);
+  margin: 0 auto;
+}
+
+.auth-heading {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.auth-heading h1 {
+  margin: var(--space-xs) 0;
+}
+
+.auth-form-surface {
+  padding: var(--space-xl);
+  background: var(--color-surface-pure);
+  border: 1px solid var(--color-brown-border);
+  border-radius: var(--radius-xs);
+}
+
+.auth-google-button {
+  gap: var(--space-sm);
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin: var(--space-lg) 0;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  height: 1px;
+  flex: 1;
+  background: var(--color-ink-rule);
+}
+
+.auth-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-brown-secondary);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.auth-forgot-link {
+  margin-top: var(--space-md);
+  font-size: 0.85rem;
+}
+
+.auth-switch {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-ink-rule);
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.auth-message {
+  margin: 0 0 var(--space-md);
+  font-size: 0.85rem;
+}
+
+.auth-message-error {
+  color: var(--color-crimson-spam);
+}
+
+.auth-message-success {
+  color: var(--color-sage);
+}
+
+.auth-state {
+  min-height: 52vh;
+  display: grid;
+  place-items: center;
+  padding: var(--space-xl);
+  color: var(--text-secondary);
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+}
+
+.account-content {
+  max-width: var(--max-width-narrow);
+}
+
+.account-heading {
+  margin-bottom: var(--space-xl);
+}
+
+.account-profile {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-xl) 0;
+  border-top: 1px solid var(--color-ink-rule-dark);
+  border-bottom: 1px solid var(--color-ink-rule-dark);
+}
+
+.account-avatar {
+  width: 68px;
+  height: 68px;
+  flex: 0 0 68px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--color-brown-border);
+}
+
+.account-avatar-placeholder {
+  display: grid;
+  place-items: center;
+  color: var(--color-brown-muted);
+  background: var(--color-parchment-light);
+}
+
+.account-profile-details {
+  min-width: 0;
+  flex: 1;
+}
+
+.account-profile-details h2 {
+  margin: 0 0 0.2rem;
+  color: var(--color-espresso);
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+}
+
+.account-profile-details p {
+  margin: 0;
+  color: var(--text-secondary);
+  overflow-wrap: anywhere;
+}
+
+.account-created {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.45rem !important;
+  color: var(--text-muted) !important;
+  font-size: 0.8rem;
+}
+
+.account-logout {
+  flex: 0 0 auto;
+  gap: 0.4rem;
+}
+
+.account-sections {
+  margin-top: var(--space-xl);
+  border-top: 1px solid var(--color-ink-rule);
+}
+
+.account-data-error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+  padding: var(--space-md);
+  border: 1px solid var(--color-brown-border);
+  border-left: 3px solid var(--color-terracotta);
+  background: var(--color-surface-paper);
+}
+
+.account-data-error p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.account-data-error button {
+  flex: 0 0 auto;
+  gap: 0.35rem;
+}
+
+.account-section {
+  padding: var(--space-lg) 0;
+  border-bottom: 1px solid var(--color-ink-rule);
+}
+
+.account-section-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  color: var(--color-brown-secondary);
+}
+
+.account-section-title h2 {
+  margin: 0;
+  color: var(--color-espresso);
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+}
+
+.account-section > p {
+  margin: var(--space-xs) 0 0 2rem;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.account-balance-value {
+  color: var(--color-espresso) !important;
+  font-family: var(--font-mono);
+  font-size: 1rem !important;
+  font-weight: 700;
+}
+
+.account-activity-list {
+  margin: var(--space-sm) 0 0 2rem;
+  padding: 0;
+  list-style: none;
+}
+
+.account-activity-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: var(--space-xs) 0;
+  border-top: 1px solid var(--color-ink-rule-subtle);
+  color: var(--text-primary);
+  font-size: 0.875rem;
+}
+
+.account-activity-meta {
+  flex: 0 0 auto;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  text-align: right;
+  text-transform: capitalize;
+}
+
+@media (max-width: 600px) {
+  .auth-form-surface {
+    padding: var(--space-lg);
+  }
+
+  .account-profile {
+    flex-wrap: wrap;
+    gap: var(--space-md);
+  }
+
+  .account-profile-details {
+    flex-basis: calc(100% - 84px);
+  }
+
+  .account-logout {
+    width: 100%;
+  }
+
+  .account-activity-list li {
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .account-activity-meta {
+    text-align: left;
+  }
+
+  .account-data-error {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+/* =========================================================================
+   1. Luxury Navigation Bar
+   ========================================================================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: rgba(244, 237, 227, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-ink-rule);
+  transition: all var(--transition-fast);
+}
+
+.announcement-bar {
+  background-color: var(--color-espresso);
+  color: var(--color-cream);
+  padding: 0.45rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.775rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.announcement-bar a {
+  color: var(--color-warm-amber);
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.brand-logo-img {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xl);
+}
+
+.nav-link {
+  font-family: var(--font-sans);
+  font-size: 0.825rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-espresso);
+  text-decoration: none;
+  position: relative;
+  padding: 0.4rem 0;
+  transition: color var(--transition-fast);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background-color: var(--color-espresso);
+  transition: width var(--transition-normal);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.nav-action-link {
+  font-family: var(--font-sans);
+  font-size: 0.825rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-espresso);
+  text-decoration: none;
+}
+
+.nav-account-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  background-color: var(--color-surface-pure);
+  border: 1px solid var(--color-espresso);
+  border-radius: var(--radius-xs);
+  font-family: var(--font-mono);
+  font-size: 0.775rem;
+  font-weight: 700;
+  color: var(--color-espresso);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.nav-account-pill:hover {
+  background-color: var(--color-espresso);
+  color: var(--color-cream);
+}
+
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-espresso);
+  padding: var(--space-xs);
+  cursor: pointer;
+}
+
+/* Mobile Nav Drawer */
+.mobile-nav-drawer {
+  position: fixed;
+  inset: 0;
+  background-color: var(--color-cream);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-xl);
+  border-left: 1px solid var(--color-espresso);
+}
+
+.mobile-nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--color-ink-rule);
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  margin-top: var(--space-2xl);
+}
+
+.mobile-nav-link {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  color: var(--color-espresso);
+  text-decoration: none;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px dotted var(--color-ink-rule);
+}
+
+/* =========================================================================
+   2. Continuous Pouring Hero Animation (First Visual Encounter)
+   ========================================================================= */
+.continuous-pour-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: var(--space-lg) auto var(--space-3xl) auto;
+  max-width: 680px;
+  width: 100%;
+}
+
+.pour-svg-container {
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.pour-master-svg {
+  width: 100%;
+  height: auto;
+  max-height: 440px;
+  display: block;
+  filter: drop-shadow(0 12px 32px rgba(56, 34, 14, 0.1));
+}
+
+.pour-caption-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.825rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-brown-secondary);
+  margin-top: var(--space-lg);
+}
+
+.pause-symbol-accent {
+  font-weight: 700;
+  color: var(--color-espresso);
+}
+
+/* =========================================================================
+   3. Hero Typography & Editorial Layout
+   ========================================================================= */
+.landing-hero-section {
+  padding-top: var(--space-2xl);
+  padding-bottom: var(--space-5xl);
+  text-align: center;
+  position: relative;
+}
+
+.hero-editorial-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-brown-secondary);
+  margin-bottom: var(--space-md);
+}
+
+.hero-main-title {
+  font-family: var(--font-serif);
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--color-espresso);
+  margin: 0 auto var(--space-xs) auto;
+  text-transform: uppercase;
+}
+
+.hero-main-subtitle {
+  font-family: var(--font-mono);
+  font-size: clamp(0.85rem, 1.4vw, 1.05rem);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-brown-secondary);
+  margin-bottom: var(--space-2xl);
+}
+
+.hero-core-punchline {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 3.2vw, 2.75rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--color-espresso);
+  max-width: 780px;
+  margin: 0 auto var(--space-xl) auto;
+}
+
+.hero-philosophy-lead {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  max-width: 620px;
+  margin: 0 auto var(--space-3xl) auto;
+}
+
+.hero-cta-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+/* =========================================================================
+   4. Bestsellers Spread (01 / Pause Coffee & 02 / Bomboloni)
+   ========================================================================= */
+.bestsellers-spread-section {
+  padding: 6.5rem 0;
+  border-top: 1px solid var(--color-ink-rule);
+}
+
+.bestsellers-header-center {
+  text-align: center;
+  margin-bottom: var(--space-4xl);
+}
+
+.bestsellers-split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5rem;
+}
+
+.bestseller-editorial-card {
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-normal);
+}
+
+.bestseller-photo-wrapper {
+  background-color: var(--color-surface-pure);
+  border: 1px solid var(--color-brown-border);
+  padding: var(--space-xs);
+  margin-bottom: var(--space-xl);
+  box-shadow: var(--shadow-paper-md);
+  overflow: hidden;
+  transition: box-shadow var(--transition-normal);
+}
+
+.bestseller-photo-wrapper img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.bestseller-editorial-card:hover .bestseller-photo-wrapper img {
+  transform: scale(1.03);
+}
+
+.bestseller-editorial-card:hover .bestseller-photo-wrapper {
+  box-shadow: var(--shadow-paper-lg);
+}
+
+.bestseller-label-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: var(--space-xs);
+  border-bottom: 1px solid var(--color-ink-rule);
+  margin-bottom: var(--space-sm);
+}
+
+.bestseller-num-tag {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-brown-secondary);
+}
+
+.bestseller-item-name {
+  font-family: var(--font-serif);
+  font-size: 2.4rem;
+  font-weight: 400;
+  color: var(--color-espresso);
+  margin: 0 0 var(--space-xs) 0;
+  letter-spacing: -0.01em;
+}
+
+.bestseller-item-desc {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-lg);
+  max-width: 480px;
+}
+
+.bestseller-link-btn {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-espresso);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-bottom: 1.5px solid var(--color-espresso);
+  padding-bottom: 2px;
+  width: fit-content;
+  transition: opacity var(--transition-fast);
+}
+
+.bestseller-link-btn:hover {
+  opacity: 0.7;
+}
+
+/* =========================================================================
+   5. The Meaning of Pause (Core Brand Philosophy)
+   ========================================================================= */
+.pause-philosophy-section {
+  padding: 6.5rem 0;
+  border-top: 1px solid var(--color-ink-rule);
+  border-bottom: 1px solid var(--color-ink-rule);
+  background-color: var(--color-surface-paper);
+}
+
+.philosophy-central-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.philosophy-tag-lead {
+  font-family: var(--font-mono);
+  font-size: 0.775rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-brown-secondary);
+  margin-bottom: var(--space-sm);
+}
+
+.philosophy-huge-quote {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 4.2vw, 3.8rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--color-espresso);
+  letter-spacing: -0.02em;
+}
+
+.philosophy-narrative-text {
+  font-size: 1.1rem;
+  line-height: 1.85;
+  color: var(--color-brown-secondary);
+  font-family: var(--font-serif);
+  font-style: italic;
+  margin-bottom: var(--space-lg);
+}
+
+.philosophy-pillars-list {
+  display: flex;
+  gap: var(--space-xl);
+  flex-wrap: wrap;
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-ink-rule);
+}
+
+.pillar-item {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-espresso);
+}
+
+/* =========================================================================
+   6. Subtle Brand Doorways (Experience & Community)
+   ========================================================================= */
+.brand-doorways-section {
+  padding: 6.5rem 0;
+  border-bottom: 1px solid var(--color-ink-rule);
+  background-color: var(--color-surface-paper);
+}
+
+.brand-doorways-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+.brand-doorway-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.doorway-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-brown-secondary);
+  margin-bottom: var(--space-xs);
+}
+
+.doorway-title {
+  font-family: var(--font-serif);
+  font-size: 1.85rem;
+  color: var(--color-espresso);
+  margin-bottom: var(--space-sm);
+  font-weight: 400;
+}
+
+.doorway-line {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-lg);
+  max-width: 440px;
+}
+
+.doorway-link {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-espresso);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-bottom: 1.5px solid var(--color-espresso);
+  padding-bottom: 2px;
+  width: fit-content;
+  transition: opacity var(--transition-fast);
+}
+
+.doorway-link:hover {
+  opacity: 0.7;
+}
+
+/* =========================================================================
+   7. Visit Pause Section
+   ========================================================================= */
+.minimal-visit-section {
+  padding: 6.5rem 0;
+  text-align: center;
+}
+
+.visit-punchline-final {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 4.8vw, 4.2rem);
+  font-weight: 400;
+  color: var(--color-espresso);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-md);
+}
+
+.visit-sub-line {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  max-width: 540px;
+  margin: 0 auto var(--space-2xl) auto;
+}
+
+.visit-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+/* =========================================================================
+   8. Menu Tariff Sheet Styles
+   ========================================================================= */
+.menu-sheet-wrapper {
+  background-color: var(--color-surface-pure);
+  border: 1px solid var(--color-espresso);
+  border-radius: var(--radius-xs);
+  padding: var(--space-3xl);
+  max-width: 880px;
+  margin: 0 auto;
+  box-shadow: var(--shadow-paper-lg);
+}
+
+.menu-sheet-header {
+  text-align: center;
+  border-bottom: 1px solid var(--color-ink-rule);
+  padding-bottom: var(--space-xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.menu-sheet-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.775rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 0.4rem;
+}
+
+.menu-category-block {
+  margin-bottom: var(--space-2xl);
+}
+
+.menu-category-title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-espresso);
+  padding-bottom: 0.35rem;
+  margin-bottom: var(--space-md);
+}
+
+.menu-category-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-espresso);
+}
+
+.menu-category-note {
+  font-size: 0.775rem;
+  font-family: var(--font-mono);
+  color: var(--color-terracotta);
+  font-weight: 600;
+}
+
+.menu-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.menu-item-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 0.4rem 0.6rem;
+  margin: 0 -0.6rem;
+  border-radius: var(--radius-xs);
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.menu-item-row:hover {
+  background-color: rgba(226, 213, 196, 0.35);
+  transform: translateX(2px);
+}
+
+.menu-item-name {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-espresso);
+}
+
+.menu-leader-dots {
+  flex: 1 1 auto;
+  border-bottom: 1px dotted var(--color-ink-rule);
+  margin: 0 var(--space-sm);
+  position: relative;
+  top: -4px;
+}
+
+.menu-price-text {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-espresso);
+  white-space: nowrap;
+}
+
+.menu-item-options-list {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: flex;
+  gap: var(--space-md);
+  margin-top: 0.2rem;
+  flex-wrap: wrap;
+}
+
+/* =========================================================================
+   9. Experience & Community Layouts
+   ========================================================================= */
+.experience-hero-split {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--space-3xl);
+  align-items: center;
+  margin-bottom: var(--space-4xl);
+}
+
+.experience-step-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-lg);
+  margin: var(--space-2xl) 0;
+}
+
+.experience-step-card {
+  background-color: var(--color-surface-pure);
+  border: 1px solid var(--color-brown-border);
+  padding: var(--space-lg);
+  border-radius: var(--radius-xs);
+}
+
+.experience-step-num {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-espresso);
+  margin-bottom: var(--space-xs);
+}
+
+.experience-slot-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-lg);
+  background-color: var(--color-surface-pure);
+  border: 1px solid var(--color-brown-border-light);
+  border-radius: var(--radius-xs);
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.community-hero-box {
+  background-color: var(--color-espresso);
+  color: var(--color-parchment);
+  padding: var(--space-3xl);
+  border-radius: var(--radius-xs);
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+}
+
+/* Community Events Grid & High Contrast Cards */
+.community-events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr));
+  gap: var(--space-2xl);
+}
+
+.community-event-card {
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-brown-border);
+  border-radius: var(--radius-xs);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-paper-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.community-event-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-paper-md);
+}
+
+.community-event-card-img {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background-color: var(--color-parchment);
+  border-bottom: 1px solid var(--color-brown-border-light);
+}
+
+.community-event-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.community-event-card-body {
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: #FAF6F0;
+}
+
+.community-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+}
+
+.community-gallery-item {
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  border: 1px solid var(--color-brown-border-light);
+}
+
+.community-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =========================================================================
+   10. Story Magazine Layout
+   ========================================================================= */
+.story-magazine-layout {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: var(--space-3xl) 0;
+}
+
+.story-magazine-header {
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+  padding-bottom: var(--space-xl);
+  border-bottom: 1px solid var(--color-ink-rule);
+}
+
+.story-lead-paragraph {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  line-height: 1.75;
+  color: var(--color-espresso);
+  margin-bottom: var(--space-2xl);
+}
+
+.story-section-heading {
+  font-family: var(--font-serif);
+  font-size: 1.65rem;
+  color: var(--color-espresso);
+  margin: var(--space-3xl) 0 var(--space-md) 0;
+  border-bottom: 1px solid var(--color-ink-rule);
+  padding-bottom: 0.35rem;
+}
+
+.story-quote-block {
+  margin: var(--space-2xl) 0;
+  padding: var(--space-xl) var(--space-2xl);
+  border-left: 2px solid var(--color-espresso);
+  background-color: var(--color-surface-pure);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: var(--color-espresso);
+}
+
+/* =========================================================================
+   11. Kinkoos Account & Membership Dashboard
+   ========================================================================= */
+.kinkoos-account-header {
+  background-color: var(--color-espresso);
+  color: var(--color-cream);
+  padding: var(--space-3xl);
+  border-radius: var(--radius-xs);
+  margin-bottom: var(--space-3xl);
+}
+
+.kinkoos-header-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-3xl);
+  align-items: center;
+}
+
+.kinkoo-balance-display {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 5.5vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  margin: 0.25rem 0 var(--space-md) 0;
+}
+
+.kinkoo-balance-display .unit {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--color-parchment);
+  margin-left: 0.5rem;
+  font-family: var(--font-mono);
+}
+
+.kinkoo-stats-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid rgba(244, 237, 227, 0.15);
+}
+
+.kinkoo-stat-box {
+  padding: var(--space-md);
+  background-color: rgba(244, 237, 227, 0.05);
+  border: 1px solid rgba(244, 237, 227, 0.1);
+  border-radius: var(--radius-xs);
+}
+
+.kinkoo-stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.725rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-parchment);
+  opacity: 0.75;
+  margin-bottom: 0.2rem;
+}
+
+.kinkoo-stat-value {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* =========================================================================
+   12. High-Contrast Luxury Footer
+   ========================================================================= */
+.site-footer {
+  background-color: #23150A;
+  color: #E2D5C4;
+  padding: 5rem 0 2.5rem 0;
+  border-top: 2px solid #38220E;
+  margin-top: var(--space-6xl);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr 1.2fr 1.4fr;
+  gap: var(--space-4xl);
+  margin-bottom: var(--space-4xl);
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-brand-desc {
+  color: #E2D5C4;
+  font-size: 0.9rem;
+  line-height: 1.75;
+  margin-bottom: var(--space-md);
+  max-width: 320px;
+}
+
+.footer-punchline-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: #FAF6F0;
+  opacity: 0.95;
+}
+
+.footer-column-title {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin-bottom: var(--space-lg);
+  letter-spacing: 0.02em;
+}
+
+.footer-links-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.footer-link {
+  color: #E2D5C4;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+.footer-link:hover {
+  color: #FFFFFF;
+}
+
+.footer-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  font-size: 0.875rem;
+  color: #E2D5C4;
+}
+
+.footer-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.footer-icon {
+  color: #D4864A;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.footer-info-label {
+  font-weight: 700;
+  color: #FFFFFF;
+  font-size: 0.85rem;
+}
+
+.footer-info-value {
+  color: #E2D5C4;
+  font-size: 0.85rem;
+}
+
+.footer-link-direct {
+  color: #E2D5C4;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+.footer-link-direct:hover {
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-xl);
+  border-top: 1px solid rgba(226, 213, 196, 0.15);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: #C4B5A2;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.footer-bottom-links {
+  display: flex;
+  gap: var(--space-xl);
+}
+
+.footer-bottom-links a {
+  color: #C4B5A2;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.footer-bottom-links a:hover {
+  color: #FFFFFF;
+}
+
+/* =========================================================================
+   13. Responsive Adjustments
+   ========================================================================= */
+@media (max-width: 960px) {
+  .philosophy-central-grid,
+  .bestsellers-split-grid,
+  .brand-doorways-grid,
+  .experience-hero-split,
+  .kinkoos-header-grid,
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+
+  .bestseller-photo-wrapper img {
+    height: 380px;
+  }
+
+  .community-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .nav-container {
+    gap: var(--space-sm);
+  }
+
+  .nav-actions {
+    display: flex;
+    gap: 0.45rem;
+  }
+
+  .nav-contact-link {
+    display: none;
+  }
+
+  .nav-auth-link {
+    display: inline-flex;
+    white-space: nowrap;
+    font-size: 0.7rem;
+  }
+
+  .nav-account-pill {
+    gap: 0.25rem;
+    padding: 0.28rem 0.4rem;
+    font-size: 0.68rem;
+    white-space: nowrap;
+  }
+
+  .nav-account-pill img {
+    width: 13px !important;
+    height: 13px !important;
+  }
+
+  .mobile-menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+  }
+
+  .kinkoo-stats-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-sheet-wrapper {
+    padding: var(--space-lg);
+  }
+
+  .menu-category-tabs {
+    justify-content: flex-start !important;
+    scroll-padding-inline: var(--space-sm);
+  }
+
+  .menu-sheet-header > div:nth-child(2) {
+    font-size: 1.55rem !important;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+  }
+
+  .menu-category-title-row {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .menu-item-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 45%);
+    align-items: start;
+    gap: var(--space-xs);
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .menu-item-row > div:first-child {
+    min-width: 0;
+    margin-right: 0 !important;
+  }
+
+  .menu-item-row > div:first-child > div:first-child {
+    flex-wrap: wrap;
+  }
+
+  .menu-leader-dots {
+    display: none;
+  }
+
+  .menu-price-text {
+    min-width: 0;
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    text-align: right;
+    font-size: 0.82rem;
+  }
+
+  .menu-item-options-list {
+    gap: 0.25rem var(--space-sm);
+  }
+
+  .item-detail-price-row {
+    align-items: flex-start !important;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .item-detail-price {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    font-size: clamp(1.1rem, 5vw, 1.5rem) !important;
+  }
+
+  .item-detail-price-row > div:last-child {
+    min-width: 0;
+    flex-wrap: wrap;
+    overflow-wrap: anywhere;
+  }
+
+  .modal-content h3 {
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 600px) {
+  .container,
+  .container-wide,
+  .container-narrow,
+  .container-editorial {
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+  }
+
+  .section,
+  .section-spacious {
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+  }
+
+  .section-header {
+    margin-bottom: var(--space-xl);
+  }
+
+  main [style*="grid-template-columns"] {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .community-gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .community-hero-box,
+  .kinkoos-account-header {
+    padding: var(--space-xl);
+  }
+
+  .kinkoos-header-grid > div:last-child {
+    min-width: 0 !important;
+    width: 100%;
+  }
+
+  .story-magazine-layout {
+    padding: var(--space-xl) 0;
+  }
+
+  .footer-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-xl);
+  }
+
+  .footer-bottom,
+  .footer-bottom-links {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .modal-content {
+    width: 100%;
+    max-height: calc(100dvh - 1.5rem);
+    padding: var(--space-lg);
+  }
+
+  .modal-content > div:not(.modal-close-btn) {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 380px) {
+  .nav-container {
+    height: 68px;
+  }
+
+  .brand-logo-img {
+    height: 40px;
+  }
+
+  .nav-actions {
+    gap: 0.3rem;
+  }
+
+  .nav-auth-link {
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+  }
+
+  .menu-sheet-wrapper {
+    padding: var(--space-md);
+  }
+
+  .menu-sheet-subtitle {
+    letter-spacing: 0.04em;
+    overflow-wrap: anywhere;
+  }
+
+  .menu-item-row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 42%);
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+
+  .menu-item-name {
+    overflow-wrap: anywhere;
+  }
+}
