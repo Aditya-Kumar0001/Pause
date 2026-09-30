@@ -12,9 +12,9 @@ service cloud.firestore {
 
     function isAdmin() {
       return signedIn()
-        && exists(/databases/$(database)/documents/admins/$(request.auth.uid))
-        && get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.active == true
-        && get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.role == 'admin';
+        && request.auth.token.email is string
+        && exists(/databases/$(database)/documents/admin_emails/$(request.auth.token.email.lower()))
+        && get(/databases/$(database)/documents/admin_emails/$(request.auth.token.email.lower())).data.active == true;
     }
 
     // Public website content is readable by visitors and editable by admins.
@@ -62,9 +62,11 @@ service cloud.firestore {
       allow delete: if false;
     }
 
-    // Admin authorization records are maintained outside the website.
-    match /admins/{uid} {
-      allow get: if isOwner(uid);
+    // Admin allow-list, keyed by lowercased email so staff can be granted access
+    // (by adding a document here directly in the Firestore console) before their
+    // first Google sign-in. Maintained outside the website.
+    match /admin_emails/{email} {
+      allow get: if signedIn() && request.auth.token.email is string && request.auth.token.email.lower() == email;
       allow list, create, update, delete: if false;
     }
 

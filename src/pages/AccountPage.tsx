@@ -98,11 +98,20 @@ export const AccountPage: React.FC = () => {
   const visitRecords = accountData.visits;
   const rewardRecords = accountData.ledger.filter((record) => Number(record.amount) > 0);
   const redemptionRecords = accountData.redemptions;
-  const readError = dataError || (accountData.readErrorCodes.length > 0
-    ? accountData.readErrorCodes.includes('permission-denied')
-      ? 'Some Firestore activity could not be read. Existing account records are still shown; deploy the current firestore.rules to enable the remaining records.'
-      : 'Some Firestore activity could not be read. Existing account records are still shown.'
-    : '');
+  const accountReadMessages: string[] = [];
+  if (accountData.readErrorCodes.includes('api-401')) {
+    accountReadMessages.push('The Kinkoo API rejected the Firebase sign-in token. Check that the API FIREBASE_PROJECT_ID matches the website Firebase project.');
+  }
+  if (accountData.readErrorCodes.includes('api-500')) {
+    accountReadMessages.push('The Kinkoo API is missing its FIREBASE_PROJECT_ID setting. Configure it to match the website Firebase project.');
+  }
+  if (accountData.readErrorCodes.includes('permission-denied')) {
+    accountReadMessages.push('Firestore denied access to some activity. Deploy the current firestore.rules to enable those records.');
+  }
+  if (accountReadMessages.length === 0 && accountData.readErrorCodes.length > 0) {
+    accountReadMessages.push('Some account activity could not be read. Existing records are still shown.');
+  }
+  const readError = dataError || accountReadMessages.join(' ');
 
   const renderRecords = (records: AccountActivityRecord[], emptyMessage: string) => {
     if (isLoadingData && records.length === 0) return <p>Loading account activity...</p>;

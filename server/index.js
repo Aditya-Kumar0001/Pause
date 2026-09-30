@@ -12,8 +12,11 @@ try {
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const buildRoot = resolve(root, 'dist');
+const firebaseProjectId = [process.env.FIREBASE_PROJECT_ID, process.env.VITE_FIREBASE_PROJECT_ID]
+  .map((value) => String(value || '').trim())
+  .find(Boolean);
 const api = createKinkooApi({
-  projectId: process.env.FIREBASE_PROJECT_ID || process.env.VITE_FIREBASE_PROJECT_ID,
+  projectId: firebaseProjectId,
   databasePath: process.env.KINKOO_SQLITE_PATH || resolve(root, 'data', 'kinkoo.sqlite')
 });
 const allowedApiOrigins = new Set(

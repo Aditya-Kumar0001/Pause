@@ -12,7 +12,13 @@ const firebaseConfig: FirebaseOptions = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
-export const isFirebaseConfigured = Object.values(firebaseConfig).every(Boolean);
+// storageBucket, messagingSenderId, and measurementId are not required for
+// Auth/Firestore to initialize — measurementId (Analytics) in particular is
+// commonly left unset in production, and requiring it here used to disable
+// Firebase (and therefore all login) entirely.
+export const isFirebaseConfigured = Boolean(
+  firebaseConfig.apiKey && firebaseConfig.authDomain && firebaseConfig.projectId && firebaseConfig.appId
+);
 
 export const firebaseApp = isFirebaseConfigured
   ? getApps().length > 0

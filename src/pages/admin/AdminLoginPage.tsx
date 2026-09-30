@@ -1,30 +1,27 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { KeyRound, AlertCircle, ArrowLeft } from 'lucide-react';
+import { AlertCircle, ArrowLeft, Chrome } from 'lucide-react';
 import logoImg from '../../assets/logo.png';
 
 export const AdminLoginPage: React.FC = () => {
   const { loginAsAdmin } = useAuth();
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleGoogleSignIn = async () => {
     setError(null);
     setIsSubmitting(true);
 
-    const res = await loginAsAdmin(email, password);
+    const res = await loginAsAdmin();
     setIsSubmitting(false);
 
     if (res.success) {
       navigate('/admin-controls');
     } else {
-      setError(res.error || 'Invalid credentials.');
+      setError(res.error || 'This Google account is not an authorized café admin.');
     }
   };
 
@@ -60,79 +57,45 @@ export const AdminLoginPage: React.FC = () => {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label className="form-label" htmlFor="admin-email">Staff Email</label>
-            <div style={{ position: 'relative' }}>
-              <KeyRound
-                size={18}
-                style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)', color: 'var(--color-brown-muted)' }}
-              />
-              <input
-                id="admin-email"
-                type="email"
-                required
-                className="form-input"
-                style={{ paddingLeft: '42px' }}
-                placeholder="Enter staff email..."
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                autoFocus
-              />
-            </div>
-          </div>
-
-          <div className="form-group">
-            <label className="form-label" htmlFor="admin-password">Password</label>
-            <input
-              id="admin-password"
-              type="password"
-              required
-              className="form-input"
-              placeholder="Enter password..."
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-
-          {error && (
-            <div
-              style={{
-                padding: 'var(--space-sm) var(--space-md)',
-                backgroundColor: 'rgba(158, 42, 43, 0.1)',
-                border: '1px solid var(--color-crimson-spam)',
-                borderRadius: 'var(--radius-sm)',
-                color: 'var(--color-crimson-spam)',
-                fontSize: '0.85rem',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.4rem',
-                marginBottom: 'var(--space-lg)'
-              }}
-            >
-              <AlertCircle size={15} />
-              <span>{error}</span>
-            </div>
-          )}
-
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="btn btn-primary btn-full"
-            style={{ marginBottom: 'var(--space-md)' }}
+        {error && (
+          <div
+            style={{
+              padding: 'var(--space-sm) var(--space-md)',
+              backgroundColor: 'rgba(158, 42, 43, 0.1)',
+              border: '1px solid var(--color-crimson-spam)',
+              borderRadius: 'var(--radius-sm)',
+              color: 'var(--color-crimson-spam)',
+              fontSize: '0.85rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              marginBottom: 'var(--space-lg)'
+            }}
           >
-            {isSubmitting ? 'Authenticating...' : 'Enter Admin Dashboard'}
-          </button>
+            <AlertCircle size={15} />
+            <span>{error}</span>
+          </div>
+        )}
 
-          <button
-            type="button"
-            onClick={() => navigate('/')}
-            className="btn btn-cream btn-sm btn-full"
-            style={{ border: 'none' }}
-          >
-            <ArrowLeft size={14} /> Back to Customer Website
-          </button>
-        </form>
+        <button
+          type="button"
+          onClick={handleGoogleSignIn}
+          disabled={isSubmitting}
+          className="btn btn-primary btn-full"
+          style={{ marginBottom: 'var(--space-md)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}
+        >
+          <Chrome size={17} />
+          {isSubmitting ? 'Authenticating...' : 'Continue with Google'}
+        </button>
+
+        <button
+          type="button"
+          onClick={() => navigate('/')}
+          className="btn btn-cream btn-sm btn-full"
+          style={{ border: 'none' }}
+        >
+          <ArrowLeft size={14} /> Back to Customer Website
+        </button>
       </div>
     </div>
   );

@@ -31,7 +31,8 @@ export const accountDataService = {
       try {
         return await operation();
       } catch (error) {
-        const code = (error as { code?: string })?.code || label;
+        const requestStatus = (error as { status?: number })?.status;
+        const code = (error as { code?: string })?.code || (requestStatus ? `api-${requestStatus}` : label);
         if (!readErrors.includes(code)) readErrors.push(code);
         return fallback;
       }

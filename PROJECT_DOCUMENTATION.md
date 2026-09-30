@@ -16,7 +16,7 @@ The system has two persistence layers with separate responsibilities:
 | --- | --- | --- |
 | Web client | React 18, TypeScript, Vite, React Router | Customer and admin interface |
 | Sign-in | Firebase Authentication | Customer/admin identity and Firebase ID tokens |
-| Firebase database | Cloud Firestore | `users`, `admins`, `visits`, `community_members` |
+| Firebase database | Cloud Firestore | `users`, `admin_emails`, `visits`, `community_members` |
 | Kinkoo API | Node.js HTTP server | Authenticated customer and admin endpoints |
 | Kinkoo database | SQLite (`node:sqlite`) | Transactional loyalty state on persistent server disk |
 
@@ -94,7 +94,7 @@ Firestore security rules permit the four active app collections below. Three leg
 | Collection | Document key | Purpose | Access model |
 | --- | --- | --- | --- |
 | `users` | Firebase Auth UID | Customer profile: UID, name, email, photo, provider, phone, role, active status, and timestamps | Existing customer-owned profile rules retained; admins can read profiles |
-| `admins` | Firebase Auth UID | Staff role and active status, including optional display name | A user can read their own admin record; website clients cannot change admin records |
+| `admin_emails` | Lowercased sign-in email | Staff allow-list: active status and optional display name, granted directly in the Firestore console before the staff member's first Google sign-in | A user can read their own admin record (by matching email); website clients cannot change admin records |
 | `visits` | `visit_{sha256}` | Verified in-person visit record: user, timestamp, points awarded, verifier, and notes | Owner/admin reads; only an authorized admin may create a verified record; update/delete denied |
 | `community_members` | Generated request ID | Short community sign-up form with user ID, contact details, source, status, and timestamps | Signed-in users create their own request; admins read and manage requests |
 
@@ -123,7 +123,7 @@ SQLite uses WAL mode, foreign-key checks, a busy timeout, prepared statements, a
 
 ## API endpoints
 
-All endpoints except `/api/kinkoo/health` require `Authorization: Bearer <Firebase ID token>`. Admin endpoints additionally verify `admins/{uid}` in Firestore.
+All endpoints except `/api/kinkoo/health` require `Authorization: Bearer <Firebase ID token>`. Admin endpoints additionally verify `admin_emails/{email}` (lowercased sign-in email) in Firestore.
 
 | Method and path | Access | Purpose |
 | --- | --- | --- |

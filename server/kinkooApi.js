@@ -90,27 +90,32 @@ async function getFirebaseCertificates() {
 }
 
 async function verifyFirebaseToken(token, projectId) {
-  if (!projectId) throw new Error('Firebase project ID is not configured on the SQLite API server.');
+  const activeProjectId = String(projectId || '').trim();
+  if (!activeProjectId) {
+    throw Object.assign(new Error('Firebase project ID is not configured on the API server.'), { status: 500 });
+  }
   const parts = token.split('.');
-  if (parts.length !== 3) throw new Error('Sign in again to continue.');
+  if (parts.length !== 3) throw Object.assign(new Error('Firebase sent an invalid sign-in token.'), { status: 401 });
   let header;
   let claims;
   try {
     header = JSON.parse(Buffer.from(parts[0], 'base64url').toString('utf8'));
     claims = JSON.parse(Buffer.from(parts[1], 'base64url').toString('utf8'));
   } catch {
-    throw new Error('Sign in again to continue.');
+    throw Object.assign(new Error('Firebase sent an invalid sign-in token.'), { status: 401 });
   }
-  if (header.alg !== 'RS256' || !header.kid || claims.aud !== projectId
-    || claims.iss !== `https://securetoken.google.com/${projectId}`
+  if (claims.aud !== activeProjectId || claims.iss !== `https://securetoken.google.com/${activeProjectId}`) {
+    throw Object.assign(new Error('The API is configured for a different Firebase project. Set its FIREBASE_PROJECT_ID to the same project used by the website.'), { status: 401 });
+  }
+  if (header.alg !== 'RS256' || !header.kid
     || typeof claims.sub !== 'string' || claims.sub.length === 0
     || !Number.isFinite(claims.exp) || claims.exp <= Date.now() / 1000
     || !Number.isFinite(claims.iat) || claims.iat > Date.now() / 1000 + 60) {
-    throw new Error('Sign in again to continue.');
+    throw Object.assign(new Error('Your Firebase sign-in token is invalid or expired. Sign in again and retry.'), { status: 401 });
   }
   const key = (await getFirebaseCertificates()).get(header.kid);
   if (!key || !verifySignature('RSA-SHA256', Buffer.from(`${parts[0]}.${parts[1]}`), key, Buffer.from(parts[2], 'base64url'))) {
-    throw new Error('Sign in again to continue.');
+    throw Object.assign(new Error('The API could not verify the Firebase sign-in token. Check its Firebase project configuration and outbound access to Firebase token certificates.'), { status: 401 });
   }
   return claims;
 }
@@ -243,7 +248,7 @@ async function importLegacyLoyalty(db, projectId, idToken, userId) {
 }
 
 async function requireAdmin(projectId, idToken, user) {
-  const cacheKey = `${projectId}:${user.sub}`;
+  const cacheKey = `${projectId}:${user.email || user.sub}`;
   const cached = adminAuthorizationCache.get(cacheKey);
   if (cached && (cached.pending || cached.expiresAt > Date.now())) {
     const displayName = await cached.promise;
@@ -268,17 +273,17 @@ async function requireAdmin(projectId, idToken, user) {
 }
 
 async function readAdminAuthorization(projectId, idToken, user) {
+  const email = String(user.email || '').trim().toLowerCase();
+  if (!email) throw new Error('This Firebase account has no email address, so it cannot be checked against the admin allow-list.');
   try {
-    const document = await firestoreRequest(projectId, idToken, `/admins/${encodeURIComponent(user.sub)}`);
+    const document = await firestoreRequest(projectId, idToken, `/admin_emails/${encodeURIComponent(email)}`);
     const admin = decodeFirestoreFields(document.fields);
     if (admin.active !== true) throw new Error('This admin account is inactive in Firestore.');
-    if (admin.role !== 'admin') throw new Error('The Firestore admin record must have role set to "admin".');
     return String(admin.displayName || user.name || user.email || 'Café Staff');
   } catch (error) {
-    if (error.message === 'This admin account is inactive in Firestore.'
-      || error.message === 'The Firestore admin record must have role set to "admin".') throw error;
-    if (error.status === 404) throw new Error('No Firestore admin record was found for this signed-in account.');
-    if (error.status === 403) throw new Error('Firestore denied access to this admin record. Check the admins/{uid} read rule.');
+    if (error.message === 'This admin account is inactive in Firestore.') throw error;
+    if (error.status === 404) throw new Error('No Firestore admin_emails record was found for this signed-in account.');
+    if (error.status === 403) throw new Error('Firestore denied access to this admin record. Check the admin_emails/{email} read rule.');
     throw new Error('Could not read this account admin authorization from Firestore. Check the Firebase project settings and server logs.');
   }
 }
@@ -433,7 +438,9 @@ function syncCatalog(db, requestBody) {
 }
 
 export function createKinkooApi({ projectId, databasePath } = {}) {
-  const activeProjectId = projectId || process.env.FIREBASE_PROJECT_ID || process.env.VITE_FIREBASE_PROJECT_ID;
+  const activeProjectId = [projectId, process.env.FIREBASE_PROJECT_ID, process.env.VITE_FIREBASE_PROJECT_ID]
+    .map((value) => String(value || '').trim())
+    .find(Boolean);
   const getDatabase = () => database || (database = openKinkooDatabase(databasePath));
 
   return async function handleKinkooApi(request, response) {
@@ -446,7 +453,9 @@ export function createKinkooApi({ projectId, databasePath } = {}) {
       }
       const authorization = request.headers.authorization || '';
       const idToken = authorization.startsWith('Bearer ') ? authorization.slice(7) : '';
-      if (!idToken) throw Object.assign(new Error('Sign in to continue.'), { status: 401 });
+      if (!idToken) {
+        throw Object.assign(new Error('The API did not receive a Firebase Authorization token. Check that the API proxy forwards the Authorization header.'), { status: 401 });
+      }
       const user = await verifyFirebaseToken(idToken, activeProjectId);
       const db = getDatabase();
       const path = url.pathname;

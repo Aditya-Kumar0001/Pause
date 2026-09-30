@@ -11,12 +11,9 @@ interface AuthContextType {
   authLoading: boolean;
   currentRole: UserRole;
   isAdmin: boolean;
-  loginAsAdmin: (email: string, password: string) => Promise<{ success: boolean; error?: string }>;
+  loginAsAdmin: () => Promise<{ success: boolean; error?: string }>;
   logoutAdmin: () => Promise<void>;
   signInWithGoogle: () => Promise<AuthResult>;
-  signInWithEmail: (email: string, password: string) => Promise<AuthResult>;
-  signUpWithEmail: (name: string, phone: string, email: string, password: string) => Promise<AuthResult>;
-  sendPasswordReset: (email: string) => Promise<AuthResult>;
   signOut: () => Promise<AuthResult>;
 }
 
@@ -48,7 +45,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       if (user) {
         let adminProfile: UserProfile | null = null;
         try {
-          adminProfile = await authService.isAuthorizedAdmin(user.uid);
+          adminProfile = await authService.isAuthorizedAdmin(user.email);
         } catch {
           adminProfile = null;
         }
@@ -74,8 +71,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return unsubscribe;
   }, []);
 
-  const loginAsAdmin = async (email: string, password: string) => {
-    const result = await authService.loginAsAdmin(email, password);
+  const loginAsAdmin = async () => {
+    const result = await authService.loginAsAdmin();
     const user = auth?.currentUser;
 
     // The dashboard can mount before onAuthStateChanged finishes after sign-in.
@@ -113,9 +110,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         loginAsAdmin,
         logoutAdmin,
         signInWithGoogle: customerAuthService.signInWithGoogle,
-        signInWithEmail: customerAuthService.signInWithEmail,
-        signUpWithEmail: customerAuthService.signUpWithEmail,
-        sendPasswordReset: customerAuthService.sendPasswordReset,
         signOut
       }}
     >
